@@ -107,6 +107,16 @@ methods::
    set_redis_conn: To instantiate a specific redis connection after the item creation
    clear_cache_instance: To clear the entire cache instance
 
+Tests
+=====
+
+To run the tests, run
+::
+
+    python tests.py
+    
+An existing redis server must exist already, although it will not be used.
+
 Appreciation
 ============
 
