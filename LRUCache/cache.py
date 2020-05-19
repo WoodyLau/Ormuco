@@ -4,7 +4,7 @@ from collections import deque
 from utils import RedisCache
 
 class LRUCache(object):
-    def __init__(self, capacity=128, ttl=0, redis_host='localhost', redis_port=6379, redis_db=0, cache_name='lru'):
+    def __init__(self, capacity=128, ttl=0, redis_host='localhost', redis_port=6379, redis_db=0, cache_name='lru', connect=True):
         self.capacity = capacity
         # Cache is a dictionary containing keys and values
         self.cache = {}
@@ -12,13 +12,17 @@ class LRUCache(object):
         self.queue = deque()
         self.ttl = ttl
         # Connect to the redis cache
-        self.redis_conn = RedisCache(cache_name, redis_host, redis_port, redis_db)
+        self.redis_conn = RedisCache(cache_name, redis_host, redis_port, redis_db, connect)
         # Get all existing items from redis cache
-        self.getItemsFromCache()
+        if connect:
+            self.getItemsFromCache()
 
     def setRedisConn(self, redis, cache_name):
         self.redis_conn = RedisCache(cache_name=cache_name)
         self.redis_conn.setRedisConn(redis)
+
+    def connectCache(self):
+        self.redis_conn.connect()
 
     def clearCache(self):
         self.redis_conn.clear()

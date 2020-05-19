@@ -115,8 +115,6 @@ To run the tests, run
 ::
 
     python tests.py
-    
-An existing redis server must exist already, although it will not be used.
 
 Acknowledgements
 ============
