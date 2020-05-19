@@ -5,7 +5,7 @@ class RedisCache(object):
         self.redis = redis.StrictRedis(decode_responses=True, host=host, port=port, db=db)
         self.cache_name = cache_name
 
-    def set_redis_conn(self, conn: redis):
+    def setRedisConn(self, conn: redis):
         self.redis = conn
 
     def clear(self):
@@ -14,7 +14,7 @@ class RedisCache(object):
     def get(self, key: str):
         return self.redis.hget(self.cache_name, key)
 
-    def get_all_keys(self):
+    def getAllKeys(self):
         return self.redis.hgetall(self.cache_name)
 
     def set(self, key: str, value: str):

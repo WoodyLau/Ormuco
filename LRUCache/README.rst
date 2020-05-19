@@ -41,7 +41,7 @@ collections.deque::
 
 Deques are a generalization of stacks and queues (the name is pronounced “deck” and is short for “double-ended queue”). Deques support thread-safe, memory efficient appends and pops from either side of the deque with approximately the same O(1) performance in either direction.
 
-The deque is used to maintain a local ordering of the recently used keys.
+The deque is used to maintain a local ordering of the recently used keys. New/reused keys are appended on the right, and old keys are popped from the left.
 
 
 
@@ -101,11 +101,12 @@ Where::
 
 methods::
 
-   put: To create a cache item into the cache instance could have an extra argument (ttl) to expire this specific item
+   put: To create a cache item into the cache instance; can have an extra argument (ttl) to expire this specific item
    get: The obtain a cache item altering the order of the items
    peek: The obtain a cache item without altering the order of the items
-   set_redis_conn: To instantiate a specific redis connection after the item creation
-   clear_cache_instance: To clear the entire cache instance
+   setRedisConn: To set a specific redis connection after the item creation
+   clearCache: To clear the entire cache instance, both local and redis
+   setCapacity: Change the capacity of the cache
 
 Tests
 =====
@@ -117,7 +118,7 @@ To run the tests, run
     
 An existing redis server must exist already, although it will not be used.
 
-Appreciation
+Acknowledgements
 ============
 
 Inspiration for this was taken from https://github.com/pcu4dros/pedro_cuadros_test/tree/master/python-distributed-lru-cache
